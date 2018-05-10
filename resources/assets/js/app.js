@@ -29,10 +29,9 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-Vue.component(
-    'users-index',
-    require('./components/UsersIndex.vue')
-);
+Vue.component('users-index', require('./components/UsersIndex.vue'));
+Vue.component('add-result', require('./components/results/Add.vue'));
+
 import {TinkerComponent} from 'botman-tinker';
 Vue.component('botman-tinker', TinkerComponent);
 

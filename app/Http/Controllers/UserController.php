@@ -87,4 +87,25 @@ class UserController extends Controller
     {
         //
     }
+
+    public function addResult()
+    {
+        $students = User::all('id', 'name')->take(4);
+        return view('results.add', ['students' => $students]);
+    }
+
+    public function saveResult(Request $request)
+    {
+        return $request->all();
+    }
+
+    public function apiResult(Request $request)
+    {
+        $length = $request->input('length');
+        if($length == -2){
+            return $students = User::all('id', 'name');
+        }else{
+            return $students = User::all('id', 'name')->take($length);
+        }
+    }
 }

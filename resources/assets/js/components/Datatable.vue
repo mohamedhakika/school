@@ -1,7 +1,7 @@
 <template>
   <div class="table-responsive">
     <table class="table table-striped table-sm">
-      <thead>
+      <thead class="bg-secondary">
         <tr>
           <th>No.</th>
           <th v-for="column in columns" :key="column.name" @click="$emit('sort', column.name)"

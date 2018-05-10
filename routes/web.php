@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users', 'UserController@index')->name('user-api');
 Route::get('/users/index', 'UserController@getIndex')->name('user-index');
+Route::get('/results', 'UserController@addResult')->name('add-result');
+Route::get('/api/results', 'UserController@apiResult')->name('api-result');
+Route::post('/result/store', 'UserController@saveResult')->name('save-result');

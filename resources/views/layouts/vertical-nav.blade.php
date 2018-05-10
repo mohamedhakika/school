@@ -41,6 +41,11 @@
         <i class="fas fa-users fa-lg"></i> &nbsp; Users
         </a>
       </li>
+      <li>
+        <a href="{{ route('add-result') }}">
+        <i class="fas fa-users fa-lg"></i> &nbsp; Add Result
+        </a>
+      </li>
     </ul>
   </div>
 </div>

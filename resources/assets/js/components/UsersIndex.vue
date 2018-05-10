@@ -33,7 +33,7 @@
           <td>{{ number + pagination.from}}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.created_at }}</td>
+          <td>{{ moment(user.created_at).fromNow() }}</td>
           <td class="text-right align-right">
                 <form action="" method="POST">
                     <div class="btn-group">
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+var moment = require('moment');
 import Datatable from './Datatable.vue';
 import Pagination from './Pagination.vue'
 export default {
@@ -79,6 +80,7 @@ export default {
            sortOrders[column.name] = 1;
         });
         return {
+            moment: moment,
             users: [],
             columns: columns,
             loading: true,
