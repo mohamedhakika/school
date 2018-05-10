@@ -10,4 +10,7 @@ class Darasa extends Model
     use SoftDeletes;
     protected $table = 'classes';
     protected $dates = ['deleted_at'];
+    protected $fillable = [
+      'name','level','stream',
+    ];
 }
