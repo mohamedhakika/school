@@ -15,7 +15,15 @@ class CreateCombinationStudent extends Migration
     {
         Schema::create('combination_student', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('student_id')->unsigned();
+            $table->integer('combination_id')->unsigned();
+            $table->unique(['student_id', 'combination_id']);
             $table->timestamps();
+            
+            $table->foreign('student_id')->references('id')
+                ->on('students')->onDelete('cascade');
+            $table->foreign('combination_id')->references('id')
+                ->on('combinations')->onDelete('cascade');
         });
     }
 

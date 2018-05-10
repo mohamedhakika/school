@@ -15,7 +15,14 @@ class CreateClassTeacherTable extends Migration
     {
         Schema::create('class_teacher', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('class_id')->unsigned();
+            $table->smallInteger('year');
             $table->timestamps();
+            $table->unique(['class_id', 'year']);
+            
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
         });
     }
 

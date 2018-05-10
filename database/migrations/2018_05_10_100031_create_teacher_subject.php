@@ -15,7 +15,18 @@ class CreateTeacherSubject extends Migration
     {
         Schema::create('teacher_subject', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
+            $table->integer('class_id')->unsigned();
+            $table->integer('year');
+            $table->integer('created_by')->unsigned()->nullable();
             $table->timestamps();
+            
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->unique(['teacher_id', 'subject_id', 'class_id', 'year']);
         });
     }
 

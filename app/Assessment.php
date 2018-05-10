@@ -12,11 +12,11 @@ class Assessment extends Model
 
     public function addedBy()
     {
-    	return $this->belongsTo('App\User', 'created_by');	
+    	return $this->belongsTo(User::class, 'created_by');	
     }
     
     public function updatedBy()
     {
-    	return $this->belongsTo('App\User', 'updated_by');
+    	return $this->belongsTo(User::class, 'updated_by');
     }
 }

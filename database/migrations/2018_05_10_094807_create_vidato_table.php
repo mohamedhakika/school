@@ -15,7 +15,9 @@ class CreateVidatoTable extends Migration
     {
         Schema::create('vidato', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

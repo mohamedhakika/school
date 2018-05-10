@@ -20,36 +20,36 @@ class Student extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class);
     }
 
     public function forms()
     {
-        return $this->belongsToMany('App\Darasa', 'class_student', 'student_id', 'class_id')->withPivot('id', 'year');
+        return $this->belongsToMany(Darasa::class, 'class_student', 'student_id', 'class_id')->withPivot('id', 'year');
     }
 
     public function combination()
     {
-        return $this->belongsTo('App\Combination');
+        return $this->belongsTo(Combination::class);
     }
 
     public function addedBy(){
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo(User::class , 'created_by');
     }
 
     public function tabia()
     {
-        return $this->belongsToMany('App\Tabia', 'student_tabia', 'student_id', 'tabia_id')
+        return $this->belongsToMany(Tabia::class , 'student_tabia', 'student_id', 'tabia_id')
             ->withPivot('id', 'grade', 'term', 'year');
     }
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject')->orderBy('name', 'DESC');
+        return $this->belongsToMany(Subject::class)->orderBy('name', 'DESC');
     }
     
     public function results()
     {
-        return $this->hasMany('App\Result');
+        return $this->hasMany(Result::class);
     }
 }
