@@ -58248,7 +58248,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": student.id
       }
     }), _vm._v(" "), _c('input', {
-      staticClass: "form-control",
+      staticClass: "form-control form-control-sm",
       attrs: {
         "type": "text",
         "name": "marks[]",

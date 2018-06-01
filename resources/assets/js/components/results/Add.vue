@@ -54,7 +54,7 @@
                 <td> {{ student.name }} </td>
                 <td>
                   <input type="hidden" name="student_id[]" :value="student.id">
-                  <input type="text" name="marks[]" class="form-control" id="marks" placeholder="Enter marks" required> 
+                  <input type="text" name="marks[]" class="form-control form-control-sm" id="marks" placeholder="Enter marks" required> 
                 </td>
                 <td> <a href="#" class="badge badge-danger" @click="removeStudent(index)"> X </a> </td>
               </tr>
