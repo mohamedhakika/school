@@ -24,7 +24,7 @@ class UserController extends Controller
     private $user;
 
     /**
-     * Constructor to initialize user object
+     * Constructor to initialize object
      *
      * @param User $user
      */
@@ -41,6 +41,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->ajax()){
+            return $this->user->all();
+        }
         $data = $this->user->orderBy('id','DESC')->paginate(10);
         return view('admins.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -248,5 +251,31 @@ class UserController extends Controller
             ]);
         return redirect()->route('staff.subjects.create', $id)
                         ->with('success','Subject added successfully');
+    }
+
+    public function getIndex()
+    {
+       return view('users.index');
+    }
+
+    public function addResult()
+    {
+        $students = User::all('id', 'name')->take(4);
+        return view('results.add', ['students' => $students]);
+    }
+
+    public function saveResult(Request $request)
+    {
+        return $request->all();
+    }
+
+    public function apiResult(Request $request)
+    {
+        $length = $request->input('length');
+        if($length == -2){
+            return $students = User::all('id', 'name');
+        }else{
+            return $students = User::all('id', 'name')->take($length);
+        }
     }
 }

@@ -47,6 +47,13 @@ class StudentController extends Controller
      */
     public function o_index(Request $request)
     {
+        // //return auth()->user()->roles();
+        // $user = auth()->user();
+        // if($user->hasRole('admin')){
+        //     return "yes user has admin role";
+        // }else{
+        //     return "User has no admin role";
+        // }
        $students = $this->student->where('level', '=', '0')->orderBy('id','DESC')->paginate(10);
         return view('students.o-index',compact('students'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -105,7 +112,7 @@ class StudentController extends Controller
     public function o_store(CreateOlStudentRequest $request)
     {   
        //Transaction if one fail all query will fails..
-        DB::transaction(function($request) use ($request)
+        DB::transaction(function($request)
         {
             $password = Hash::make($request->get('password'));
             $name = $request->get('first_name')." ". $request->get('last_name');
@@ -162,7 +169,7 @@ class StudentController extends Controller
     public function a_store(CreateAlStudentRequest $request)
     {   
        //Transaction if one fail all query will fails..
-        DB::transaction(function($request) use ($request)
+        DB::transaction(function($request)
         {
             $password = Hash::make($request->get('password'));
             //Creating user
@@ -327,7 +334,7 @@ class StudentController extends Controller
     {
         //return $request->all();
         //Transaction if one fail all query will fails..
-        DB::transaction(function($request) use ($request, $id, $userId)
+        DB::transaction(function($request)
         {
             $user = User::find($userId);
             if(!$user){
